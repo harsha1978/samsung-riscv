@@ -119,7 +119,6 @@ This document outlines the six primary instruction formats in the RISC-V archite
 Each format in the RISC-V ISA is designed to optimize specific types of operations while maintaining simplicity and efficiency in decoding. Understanding these formats is essential for working with RISC-V assembly and machine code.
 
 
-
 This document provides a detailed breakdown of 15 unique RISC-V instructions extracted from an object file. Each instruction is described in terms of its format, opcode, machine code, and binary representation.
 ![task 3](https://github.com/user-attachments/assets/23e9c52c-30f9-4c56-938a-f9d13f00ccfd)
 
@@ -150,3 +149,123 @@ This document provides a detailed breakdown of 15 unique RISC-V instructions ext
 5. **Binary Representation**: The equivalent binary representation of the machine code.
 
 This table is helpful for understanding the structure of RISC-V instructions and how they translate into machine-readable formats.
+
+## Task 4: Function simulation of RISC-V core
+
+This guide provides steps to perform a functional simulation of the given RISC-V Core Verilog netlist and testbench, along with details about the differences between Standard RISC-V ISA and Hardcoded ISA.
+
+## Steps to Perform Functional Simulation
+
+### 1. Install Required Tools
+
+In Ubuntu, open the terminal and enter the following commands to install **iverilog** and **GTKWave**:
+
+```bash
+$ sudo apt-get update
+$ sudo apt-get install iverilog gtkwave
+```
+
+### 2. Clone the Repository
+
+To clone the repository and download the netlist files for simulation, use these commands in your terminal:
+
+```bash
+$ git clone https://github.com/vinayrayapati/iiitb_rv32i
+$ cd iiitb_rv32i
+```
+
+### 3. Create Files
+
+Create two files:
+- **Verilog file**
+- **Testbench file**
+
+### 4. Add Code to Files
+
+Copy the code from the reference GitHub repository and paste it into your Verilog file and testbench file:
+- **Verilog file**: `iiitb_rv32i.v`
+- **Testbench file**: `iiitb_rv32i_tb.v`
+
+### 5. Run and Simulate the Verilog Code
+
+Use the following commands to compile and simulate the Verilog code:
+
+```bash
+$ iverilog -o iiitb_rv32i iiitb_rv32i.v iiitb_rv32i_tb.v
+$ ./iiitb_rv32i
+```
+
+### 6. View the Simulation Waveform
+
+To see the simulation waveform in GTKWave, enter the following command:
+
+```bash
+$ gtkwave iiitb_rv32i.vcd
+```
+
+---
+
+## Differences Between Standard RISC-V ISA and Hardcoded ISA
+
+| Operation            | Standard RISC-V ISA | Hardcoded ISA |
+|----------------------|---------------------|---------------|
+| **ADD R6, R2, R1**  | `32'h00110333`      | `32'h02208300` |
+| **SUB R7, R1, R2**  | `32'h402083b3`      | `32'h02209380` |
+| **AND R8, R1, R3**  | `32'h0030f433`      | `32'h0230a400` |
+| **OR R9, R2, R5**   | `32'h005164b3`      | `32'h02513480` |
+| **XOR R10, R1, R4** | `32'h0040c533`      | `32'h0240c500` |
+| **SLT R1, R2, R4**  | `32'h0045a0b3`      | `32'h02415580` |
+| **ADDI R12, R4, 5** | `32'h004120b3`      | `32'h00520600` |
+| **BEQ R0, R0, 15**  | `32'h00000f63`      | `32'h00f00002` |
+| **SW R3, R1, 2**    | `32'h0030a123`      | `32'h00209181` |
+| **LW R13, R1, 2**   | `32'h0020a683`      | `32'h00208681` |
+| **SRL R16, R14, R2**| `32'h0030a123`      | `32'h00271803` |
+| **SLL R15, R1, R2** | `32'h002097b3`      | `32'h00208783` |
+
+---
+
+## Analyzing the Output Waveform
+
+The following instructions and their corresponding operations can be analyzed in the simulation waveform:
+
+1. **Instruction 1: ADD R6, R2, R1**
+   ![add](https://github.com/user-attachments/assets/aa0c0afc-25c8-4c29-b83c-5e185e095266)
+
+
+2. **Instruction 2: AND R8, R1, R3**
+   ![and](https://github.com/user-attachments/assets/6f14b1bc-d90d-454d-9b20-9c0547b65f02)
+
+
+3. **Instruction 3: OR R9, R2, R5**
+   ![OR](https://github.com/user-attachments/assets/2c8874ef-f96f-4ba8-ad21-a747474680d3)
+
+
+4. **Instruction 4: XOR R10, R1, R4**
+   ![XOR](https://github.com/user-attachments/assets/54fb9836-e334-4241-9074-3588bd05e8d0)
+
+
+5. **Instruction 5: SLT R1, R2, R4**
+  ![SLT](https://github.com/user-attachments/assets/9e0b2bad-a955-4134-bf92-f5cdf7e544a7)
+`
+
+6. **Instruction 6: ADDI R12, R4, 5**
+   ![addi](https://github.com/user-attachments/assets/dcefb714-63ce-463e-8421-8c68c530f29e)
+
+
+7. **Instruction 7: BEQ R0, R0, 15**
+   ![BEQ](https://github.com/user-attachments/assets/dc461c33-c9ab-4c97-b0b2-24f30ece0edd)
+
+
+8. **Instruction 8: BNE R0, R1, 20**
+   ![BEN](https://github.com/user-attachments/assets/0e2c1477-78e7-404c-b414-38a847297b8e)
+
+
+9. **Instruction 9: SLL R15, R1, R2**
+    ![SLL](https://github.com/user-attachments/assets/d7105589-a852-4e2c-9214-b46d5190bf13)
+
+
+10. **Instruction 10: SUB R7, R1, R2**
+    ![SUB](https://github.com/user-attachments/assets/32d06791-14d2-4a14-9f69-40cedd71cd63)
+    
+
+
